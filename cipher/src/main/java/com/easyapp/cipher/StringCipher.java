@@ -1,6 +1,9 @@
-package com.easyapp.cipher.core;
+package com.easyapp.cipher;
 
 import androidx.annotation.NonNull;
+
+import com.easyapp.cipher.core.BaseCipher;
+import com.easyapp.cipher.core.CipherResult;
 
 @SuppressWarnings("unused")
 public final class StringCipher extends BaseCipher {
@@ -40,7 +43,7 @@ public final class StringCipher extends BaseCipher {
     public CipherResult<String> decrypt(@NonNull byte[] encrypted) {
         try {
             return new CipherResult<>(
-                    new String(newCipherEncryptMode().doFinal(encrypted))
+                    new String(newCipherDecryptMode().doFinal(encrypted))
             );
         } catch (Throwable e) {
             return new CipherResult<>(e);
