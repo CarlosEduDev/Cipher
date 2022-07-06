@@ -21,13 +21,19 @@ public final class CipherResult<T> {
         this.data = data;
     }
 
-    @Nullable
+    @NonNull
     public Throwable getError() {
+
+        if (error == null) throw new IllegalArgumentException("result is success");
+
         return error;
     }
 
-    @Nullable
+    @NonNull
     public T getData() {
+
+        if (data == null) throw new IllegalArgumentException("result is error", error);
+
         return data;
     }
 

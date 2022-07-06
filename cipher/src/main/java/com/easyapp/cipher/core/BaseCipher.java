@@ -1,5 +1,7 @@
 package com.easyapp.cipher.core;
 
+import com.easyapp.cipher.util.Hash;
+
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -41,8 +43,11 @@ public abstract class BaseCipher {
 
         cipher.init(
                 mode,
-                new SecretKeySpec(keyBytes, algorithm),
-                new IvParameterSpec(keyBytes)
+                new SecretKeySpec(
+                        Hash.md5(keyBytes),
+                        algorithm
+                ),
+                new IvParameterSpec(Hash.md5(keyBytes))
         );
 
         return cipher;
